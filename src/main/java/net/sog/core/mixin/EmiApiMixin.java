@@ -8,11 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import dev.emi.emi.api.EmiApi;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,24 +22,21 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public abstract class EmiApiMixin {
 
     @ModifyVariable(
-            method = "displayUses",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ldev/emi/emi/api/stack/EmiIngredient;isEmpty()Z"),
-            argsOnly = true
-    )
+                    method = "displayUses",
+                    at = @At(
+                             value = "INVOKE",
+                             target = "Ldev/emi/emi/api/stack/EmiIngredient;isEmpty()Z"),
+                    argsOnly = true)
     private static EmiIngredient modifyDisplayUses(EmiIngredient stack) {
         return stack.isEmpty() ? stack : gto$getBucketFluid(stack);
     }
 
     @ModifyVariable(
-            method = "displayRecipes",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/List;size()I"
-            ),
-            argsOnly = true
-    )
+                    method = "displayRecipes",
+                    at = @At(
+                             value = "INVOKE",
+                             target = "Ljava/util/List;size()I"),
+                    argsOnly = true)
     private static EmiIngredient modifyDisplayRecipes(EmiIngredient stack) {
         return stack.getEmiStacks().size() != 1 ? stack : gto$getBucketFluid(stack);
     }

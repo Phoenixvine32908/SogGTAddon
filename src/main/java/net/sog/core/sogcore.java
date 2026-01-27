@@ -73,8 +73,8 @@ public class sogcore {
     public static void init() {
         SoGRegistration.REGISTRATE.registerRegistrate();
         SoGItems.init();
-        SoGBlocks.init();
         SoGMaterialFlags.init();
+        SoGBlocks.init();
         SoGDatagen.init();
     }
 
