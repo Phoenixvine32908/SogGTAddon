@@ -1,10 +1,20 @@
 package net.sog.core.common.data;
 
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Block;
-import com.tterrag.registrate.util.entry.BlockEntry;
-import net.sog.core.common.registry.SoGRegistration;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.machine.multiblock.IBatteryData;
+import com.gregtechceu.gtceu.common.block.BatteryBlock;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.sog.core.common.data.block.SoGBatteryBlock;
+import net.sog.core.common.registry.SoGRegistration;
+import net.sog.core.datagen.models.SoGModels;
+
+import com.tterrag.registrate.util.entry.BlockEntry;
+
+import static net.sog.core.common.registry.SoGRegistration.REGISTRATE;
 import static net.sog.core.sogcore.SOG_CREATIVE_TAB;
 
 public class SoGBlocks {
@@ -80,8 +90,23 @@ public class SoGBlocks {
             .simpleItem()
             .register();
 
-    public static void init() {
+    private static BlockEntry<BatteryBlock> createAddonBatteryBlock(IBatteryData batteryData) {
+        var batteryBlock = REGISTRATE.block("%s_battery".formatted(batteryData.getBatteryName()),
+                p -> new BatteryBlock(p, batteryData))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, entityType) -> false))
+                .blockstate(SoGModels.createBatteryBlockModel(batteryData))
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+                .item(BlockItem::new)
+                .build()
+                .register();
+
+        GTCEuAPI.PSS_BATTERIES.put(batteryData, batteryBlock);
+        return batteryBlock;
     }
+
+    public static final BlockEntry<BatteryBlock> BATTERY_ULTIMATE_UXV = createAddonBatteryBlock(
+            SoGBatteryBlock.BatteryPartType.UXV_ULTIMATE);
+
+    public static void init() {}
 }
-
-

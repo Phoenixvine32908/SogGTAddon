@@ -76,7 +76,6 @@ public class sogcore {
         SoGMaterialFlags.init();
         SoGBlocks.init();
         SoGDatagen.init();
-
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
