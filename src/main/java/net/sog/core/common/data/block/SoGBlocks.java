@@ -26,6 +26,6 @@ public class SoGBlocks {
         GTCEuAPI.PSS_BATTERIES.put(batteryData, batteryBlock);
         return batteryBlock;
     }
-    public static final BlockEntry<BatteryBlock> BATTERY_ULTIMATE_UXV =
-            createAddonBatteryBlock(SoGGBatteryData.UXV_ULTIMATE);
+    public static final BlockEntry<BatteryBlock> BATTERY_ULTIMATE_UXV = createAddonBatteryBlock(
+            SoGBatteryBlock.BatteryPartType.UXV_ULTIMATE);
 }
