@@ -27,6 +27,7 @@ import net.sog.core.client.SoGClient;
 import net.sog.core.common.data.SoGBlocks;
 import net.sog.core.common.data.SoGItems;
 import net.sog.core.common.data.SoGRecipeTypes;
+import net.sog.core.common.data.SoGSounds;
 import net.sog.core.common.data.materials.SoGMaterialFlags;
 import net.sog.core.common.data.materials.SoGMaterials;
 import net.sog.core.common.data.recipeConditions.FluidInHatchCondition;
@@ -76,6 +77,8 @@ public class sogcore {
         SoGMaterialFlags.init();
         SoGBlocks.init();
         SoGDatagen.init();
+        SoGSounds.init();
+        SoGRecipeTypes.init();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
