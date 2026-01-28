@@ -71,7 +71,7 @@ public class PlasmaArcFurnaceRender extends DynamicRender<WorkableElectricMultib
         float tick = (machine.getOffsetTimer() + partialTick);
         // Center of the multiblock
         double x = 0.5;
-        double y = 2.5; // a little above the controller block
+        double y = 2.0; // a little above the controller block
         double z = 0.5;
 
         // Offset in front of the facing direction by 5 blocks
