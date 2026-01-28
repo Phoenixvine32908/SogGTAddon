@@ -77,8 +77,6 @@ public class sogcore {
         SoGMaterialFlags.init();
         SoGBlocks.init();
         SoGDatagen.init();
-        SoGSounds.init();
-        SoGRecipeTypes.init();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -160,6 +158,6 @@ public class sogcore {
      *
      */
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {
-        // CustomSounds.init();
+        SoGSounds.init();
     }
 }

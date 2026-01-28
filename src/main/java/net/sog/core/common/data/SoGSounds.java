@@ -1,7 +1,7 @@
 package net.sog.core.common.data;
 
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
-import net.sog.core.SoGGTAddon;
+
 import net.sog.core.sogcore;
 
 import static net.sog.core.common.registry.SoGRegistration.REGISTRATE;
@@ -12,4 +12,3 @@ public class SoGSounds {
 
     public static void init() {}
 }
-

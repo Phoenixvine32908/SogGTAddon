@@ -1,6 +1,7 @@
 package net.sog.core.datagen;
 
 import com.gregtechceu.gtceu.api.registry.registrate.SoundEntryBuilder;
+
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
