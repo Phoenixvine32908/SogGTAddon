@@ -170,6 +170,9 @@ dependencies {
     modImplementation("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     modRuntimeOnly("curse.maven:jade-324717:5390389")
 
+    // build gadgets
+    modRuntimeOnly("curse.maven:building-gadgets-298187:6850495")
+
     // GregTech and dependencies
     modImplementation("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim") { transitive = false }
     modImplementation("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") { transitive = false }

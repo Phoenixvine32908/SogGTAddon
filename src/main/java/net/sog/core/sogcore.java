@@ -6,8 +6,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
@@ -27,9 +25,8 @@ import net.sog.core.client.SoGClient;
 import net.sog.core.common.data.SoGBlocks;
 import net.sog.core.common.data.SoGItems;
 import net.sog.core.common.data.SoGRecipeTypes;
-import net.sog.core.common.data.materials.SoGMaterialFlags;
+import net.sog.core.common.data.SoGSounds;
 import net.sog.core.common.data.materials.SoGMaterials;
-import net.sog.core.common.data.recipeConditions.FluidInHatchCondition;
 import net.sog.core.common.machine.SoGMachines;
 import net.sog.core.common.registry.SoGRegistration;
 import net.sog.core.datagen.SoGDatagen;
@@ -57,7 +54,6 @@ public class sogcore {
         modEventBus.addListener(this::addMaterialRegistries);
         modEventBus.addListener(this::addMaterials);
         modEventBus.addListener(this::modifyMaterials);
-        modEventBus.addGenericListener(RecipeConditionType.class, this::registerConditions);
 
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
@@ -73,7 +69,6 @@ public class sogcore {
     public static void init() {
         SoGRegistration.REGISTRATE.registerRegistrate();
         SoGItems.init();
-        SoGMaterialFlags.init();
         SoGBlocks.init();
         SoGDatagen.init();
     }
@@ -83,13 +78,6 @@ public class sogcore {
             LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
             LOGGER.info("Look, I found a {}!", Items.DIAMOND);
         });
-    }
-
-    public void registerConditions(GTCEuAPI.RegisterEvent<String, RecipeConditionType<?>> event) {
-        FluidInHatchCondition.TYPE = GTRegistries.RECIPE_CONDITIONS.register("plasma_temp_condition",
-                new RecipeConditionType<>(
-                        FluidInHatchCondition::new,
-                        FluidInHatchCondition.CODEC));
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -157,6 +145,6 @@ public class sogcore {
      *
      */
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {
-        // CustomSounds.init();
+        SoGSounds.init();
     }
 }
