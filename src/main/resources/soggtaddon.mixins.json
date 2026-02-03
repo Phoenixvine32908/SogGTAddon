@@ -3,11 +3,13 @@
   "package": "net.sog.core.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
+  "refmap": "mixins.soggtaddon.refmap.json",
   "mixins": [
     "EmiApiMixin",
     "SillyMixin"
   ],
   "client": [
+    "client.GuiGraphicsCountSuffixMixin"
   ],
   "injectors": {
     "defaultRequire": 1
